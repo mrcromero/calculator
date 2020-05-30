@@ -3,12 +3,41 @@
 
 <head>
 	<meta charset="utf-8">
+	<link href="https://fonts.googleapis.com/css2?family=Yantramanav&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
-	<button id="first">first</button>
-	<button id="second">second</button>
+	<div id="calculator">
+		<div id="display">
+			<div id="prev-equation">54321</div>
+			<div id="current-equation">12345</div>
+		</div>
+
+		<div data-func="number" data-val="7" class="button number">7</div>
+		<div data-func="number" data-val="8" class="button number">8</div>
+		<div data-func="number" data-val="9" class="button number">9</div>
+		<div data-func="operator" data-val="+" class="button special">+</div>
+
+		<div data-func="number" data-val="4" class="button number">4</div>
+		<div data-func="number" data-val="5" class="button number">5</div>
+		<div data-func="number" data-val="6" class="button number">6</div>
+		<div data-func="subtract" data-val="-" class="button special">-</div>
+
+		<div data-func="number" data-val="1" class="button number">1</div>
+		<div data-func="number" data-val="2" class="button number">2</div>
+		<div data-func="number" data-val="3" class="button number">3</div>
+		<div data-func="operator" data-val="*" class="button special">x</div>
+
+		<div data-func="ans" data-val="a" class="button special">Ans</div>
+		<div data-func="number" data-val="0" class="button number">0</div>
+		<div data-func="decimal" data-val="." class="button number">.</div>
+		<div data-func="operator" data-val="/" class="button special">÷</div>
+
+		<div data-func="clear" data-val="c" class="button special clear">Clear</div>
+		<div data-func="delete" data-val="Delete" class="button special">Del</div>
+		<div data-func="evaluate" data-val="Enter" class="button evaluate">=</div>
+	</div>
 </body>
 
 <script type="text/javascript" src="script.js"></script>

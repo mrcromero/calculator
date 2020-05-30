@@ -1,1 +1,130 @@
-hmm
+:root {
+	--bg-color: #c1c9d7;
+
+	--calculator-color: #616161;
+
+	--display-color: #353744;
+	--display-current-color: white;
+	--display-previous-color: gray;
+
+	--button-text-color: white;
+	--button-color: #616161;
+
+	--button-number-hover-color: #404040;
+	--button-number-click-color: #262626;
+
+	--button-special-hover-color: #403749;
+	--button-special-click-color: #26212c;
+
+	--button-equal-color: #7d1c1c;
+	--button-equal-hover-color: #571414;
+	--button-equal-click-color: #3e0e0e;
+}
+
+#calculator {
+	margin: auto;
+	position: absolute;
+	top: 0; bottom: 0; left: 0; right: 0;
+	
+	height: 890px;
+	width: 550px;
+
+	display: grid;
+	grid-template-rows: 1fr repeat(6, 1fr);
+	grid-template-columns: repeat(4, 1fr);
+
+	filter: drop-shadow(0 0 30px black);
+	background-color: var(--calculator-color);
+
+	border-radius: 33px;
+}
+
+#display {
+	grid-column: 1/5;
+	grid-row: 1/3;
+
+	background-color: var(--display-color);
+	border-top-right-radius: 30px; border-top-left-radius: 30px;
+
+	position: relative;
+}
+
+#prev-equation {
+	position: absolute;
+	top: 30px; left: 40px;
+	width: px;
+
+	font: 35px "Yantramanav", sans-serif;
+	color: var(--display-previous-color);
+	text-align: left;
+}
+
+#current-equation {
+	position: absolute;
+	bottom: 30px; right: 40px;
+
+	font: 60px "Yantramanav", sans-serif;
+	color: var(--display-current-color);
+	text-align: right;
+}
+
+.button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-style: none;
+
+	font: 35px "Yantramanav", sans-serif;
+	color: var(--button-text-color);
+	background-color: var(--button-color);
+}
+
+.button.number:hover {
+	background-color: var(--button-number-hover-color);
+	transition: 0.2s;
+}
+
+.button.clear {
+	border-bottom-left-radius: 30px;
+}
+
+.button.number:active {
+	color: var(--calculator-color);
+	transform: scale(0.8);
+	background-color: var(--button-number-click-color);
+	transition: 0.2s;
+}
+
+.button.special:hover {
+	background-color: var(--button-special-hover-color);
+	transition: 0.2s;
+}
+
+.button.special:active {
+	color: var(--calculator-color);
+	transform: scale(0.8);
+	background-color: var(--button-special-click-color);
+	transition: 0.2s;
+}
+
+.button.evaluate {
+	background-color: var(--button-equal-color);
+	grid-column: 3/5;
+	border-bottom-right-radius: 30px;
+}
+
+.button.evaluate:hover {
+	background-color: var(--button-equal-hover-color);
+	transition: 0.2s;
+}
+
+.button.evaluate:active {
+	color: var(--calculator-color);
+	transform: scale(0.8);
+	background-color: var(--button-equal-click-color);
+	transition: 0.2s;
+}
+
+body {
+	background-color: var(--bg-color);
+}

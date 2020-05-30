@@ -1,6 +1,3 @@
-const first = document.querySelector("#first");
-const second = document.querySelector("#second");
-
 const equation = {
 	firstN : "",
 	secondN : "",
@@ -8,15 +5,6 @@ const equation = {
 	evaluated : false,
 	prevAns : "",
 };
-
-first.addEventListener("click", () => {
-	equation.firstN = prompt("first num?", "0");
-})
-
-second.addEventListener("click", () => {
-	equation.secondN = prompt("second num?", "0");
-	console.log(divide());
-})
 
 function add() {
 	let ans = Number(equation.firstN) + Number(equation.secondN);
