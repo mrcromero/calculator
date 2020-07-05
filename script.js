@@ -28,6 +28,9 @@ function number() {
 	if (equation.evaluated === true) {
 		equation.evaluated = false;
 	}
+	if (equation.error === true) {
+		equation.error = false;
+	}
 	if (equation.operator === "") {
 		addToFirst(val);
 	} else {
@@ -35,8 +38,32 @@ function number() {
 	}
 }
 
+function decimal() {
+	const val = this.dataset.val;
+	if (equation.evaluated === true) {
+		equation.evaluated = false;
+	}
+	if (equation.error === true) {
+		equation.error = false;
+	}
+	if (equation.operator === "") {
+		if (equation.firstN.indexOf('.') !== -1) {
+			return;
+		}
+		addToFirst(val);
+	} else {
+		if (equation.secondN.indexOf('.') !== -1) {
+			return;
+		}
+		addToSecond(val);
+	}
+}
+
 function operator() {
 	const oper = this.dataset.val;
+	if (equation.error === true) {
+		return;
+	}
 	if (equation.evaluated === true) {
 		equation.firstN = equation.prevAns;
 		equation.evaluated = false;
@@ -71,6 +98,7 @@ function clear() {
 	equation.operator = "";
 	equation.evaluated = false;
 	equation.prevAns = "";
+	equation.error = false;
 
 	displayCurr("");
 	displayPrev("");
@@ -95,7 +123,7 @@ function del() {
 }
 
 function ans() {
-	if (equation.prevAns === "") {
+	if (equation.prevAns === "" || equation.error === true) {
 		return;
 	}
 	if (equation.operator === "") {
@@ -127,23 +155,32 @@ function evaluate() {
  		case "/":
  			if(equation.secondN === "0") {
  				equation.prevAns = "E: DIVIDE BY 0";
+ 				equation.error = true;
  			} else {
  				equation.prevAns =
  					Number(equation.firstN)/Number(equation.secondN);
  			}
  			break;
  	}
+ 	if (equation.error === false) {
+ 		equation.prevAns = +equation.prevAns.toFixed(3);
+ 	}
+ 	if (equation.prevAns.toString().length > MAXCHAR) {
+ 		equation.prevAns = "E: TOO LONG";
+ 		equation.error = true;
+ 	}
  	equation.firstN = "";
  	equation.secondN = "";
 	equation.operator = "";
 	equation.evaluated = true;
 	displayCurr(equation.prevAns);
-	equation.prevAns =
-		(equation.prevAns === "E: DIVIDE BY 0") ? "":equation.prevAns;
  }
 
 function clicked() {
-	displayPrev(equation.prevAns);
+	if (equation.error === true && this.dataset.func === "operator") {
+	} else {
+		displayPrev(equation.prevAns);
+	}
 	const func = window[this.dataset.func];
 	func.apply(this);
 }
@@ -159,6 +196,7 @@ const equation = {
 	operator : "",
 	evaluated : false,
 	prevAns : "",
+	error: false,
 };
 
 document.querySelectorAll(".button").forEach(
