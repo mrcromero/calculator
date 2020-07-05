@@ -173,7 +173,11 @@ function evaluate() {
  	equation.secondN = "";
 	equation.operator = "";
 	equation.evaluated = true;
-	displayCurr(equation.prevAns);
+	currDisp.classList.add("new");
+	setTimeout(function(){
+		currDisp.classList.remove("old");
+		displayCurr(equation.prevAns);
+	}, 300);
  }
 
 function clicked() {
@@ -183,6 +187,13 @@ function clicked() {
 	}
 	const func = window[this.dataset.func];
 	func.apply(this);
+}
+
+function old() {
+	setTimeout(function(){
+		currDisp.classList.remove("new");
+		currDisp.classList.add("old");
+	}, 0);
 }
 
 const currDisp = document.querySelector("#current-equation");
@@ -198,6 +209,8 @@ const equation = {
 	prevAns : "",
 	error: false,
 };
+
+currDisp.addEventListener("transitionend", old);
 
 document.querySelectorAll(".button").forEach(
 	button => button.addEventListener("click", clicked)

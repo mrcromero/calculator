@@ -63,9 +63,18 @@
 	position: absolute;
 	bottom: 30px; right: 40px;
 
+	transition: all 0.3s;
+
 	font: 60px "Yantramanav", sans-serif;
-	color: var(--display-current-color);
 	text-align: right;
+}
+
+#current-equation.old {
+	color: var(--display-current-color);
+}
+
+#current-equation.new {
+	color: var(--display-previous-color);
 }
 
 .button {
